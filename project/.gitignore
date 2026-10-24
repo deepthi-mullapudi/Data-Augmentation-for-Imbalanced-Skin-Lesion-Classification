@@ -1,0 +1,93 @@
+# Python generated files
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+
+# Virtual environments
+.venv/
+myenv/
+venv/
+env/
+
+# IDE and operating system
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Dataset: HAM10000
+data/*
+!data/.gitkeep
+
+# Cache: retain reproducibility metadata only
+cache/*
+!cache/.gitkeep
+!cache/splits.csv
+!cache/label_mapping.json
+!cache/train_class_counts.csv
+
+# Model checkpoints
+checkpoints/*
+!checkpoints/.gitkeep
+*.pt
+*.pth
+*.ckpt
+*.onnx
+
+# Results: ignore by default
+results/*
+
+# Re-include selected top-level results
+!results/metrics.csv
+!results/E0/
+!results/E2/
+!results/E3/
+!results/E4/
+!results/GAN_DCGAN_AUG/
+!results/GAN_WGANGP/
+!results/fid_evaluation_active/
+!results/memorization_check_active/
+!results/phase9_analysis/
+!results/synthetic_diversity_active/
+
+# Ignore unwanted results directories
+results/GAN_DCGAN_old/
+results/fid_evaluation/
+results/fid_evaluation_dcgan_aug/
+results/synthetic_diversity_evaluation_old/
+results/synthetic_evaluation_old/
+results/synthetic_evaluation_smoke_old/
+results/trials/
+results/smoke/
+results/smoke_archive/
+results/archive/
+
+# Exclude model weights inside results
+results/**/*.pt
+results/**/*.pth
+results/**/*.ckpt
+
+# Smoke tests, trials and archives elsewhere
+**/smoke/
+**/smoke_*/
+**/trials/
+**/archive/
+**/smoke_archive/
+
+# Temporary patches and backups
+phase7_patch.py
+phase7_fix_topup.py
+*.pre_phase7_backup
+*.bak
+*.backup
+*~
+
+# Environment snapshots
+requirements-freeze.txt
+requirements-venv-freeze.txt
+
+# Logs and local experiment tracking
+*.log
+wandb/

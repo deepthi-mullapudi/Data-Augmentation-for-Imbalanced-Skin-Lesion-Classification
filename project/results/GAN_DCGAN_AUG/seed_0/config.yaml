@@ -1,0 +1,53 @@
+experiment:
+  id: GAN_DCGAN_AUG
+  name: conditional_dcgan_aug
+  description: Conditional DCGAN with DiffAugment for improved training diversity.
+seeds:
+- 0
+paths:
+  data_dir: E:\udemy\ADL\project\data
+  cache_dir: E:\udemy\ADL\project\cache
+  checkpoint_dir: E:\udemy\ADL\project\checkpoints
+  results_dir: E:\udemy\ADL\project\results
+  images_cache: E:\udemy\ADL\project\cache\ham64.npz
+  splits_csv: E:\udemy\ADL\project\cache\splits.csv
+data:
+  image_size: 64
+  classes:
+  - akiec
+  - bcc
+  - bkl
+  - df
+  - mel
+  - nv
+  - vasc
+  pixel_range:
+  - -1
+  - 1
+model:
+  type: dcgan
+  z_dim: 100
+  class_embed_dim: 50
+  base_channels: 512
+  d_norm: batchnorm
+  init_std: 0.02
+train:
+  epochs: 200
+  batch_size: 64
+  lr_g: 0.0001
+  lr_d: 0.0001
+  betas:
+  - 0.5
+  - 0.999
+  real_label: 0.9
+  fake_label: 0.0
+  balanced_sampler: true
+  diffaugment:
+    enabled: true
+    policy: color,translation,cutout
+logging:
+  sample_every: 5
+  checkpoint_every: 5
+  samples_per_class: 8
+  best_checkpoint_name: dcgan_best.pt
+seed: 0

@@ -1,0 +1,13 @@
+{
+  "experiment": "GAN_DCGAN_AUG",
+  "seed": 0,
+  "timestamp": "2026-10-23 21:20:12",
+  "config_file": "E:\\udemy\\ADL\\project\\configs\\gan_dcgan_aug.yaml",
+  "git_commit": "unknown",
+  "python": "3.11.9",
+  "torch": "2.5.1+cu121",
+  "cuda": "12.1",
+  "device": "cuda",
+  "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+  "platform": "Windows-10-10.0.26300-SP0"
+}

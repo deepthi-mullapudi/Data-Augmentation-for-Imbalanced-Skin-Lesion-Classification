@@ -1,0 +1,70 @@
+# E0: baseline, real images only, standard cross-entropy.
+# Sections marked FIXED must be identical in every classifier experiment
+# (src.utils.check_fixed_settings verifies this). Only `augmentation`,
+# `topup` and `synthetic` are allowed to differ.
+
+experiment:
+  id: E0
+  name: baseline_real_only
+  description: Real training images only, no augmentation, standard loss.
+
+seeds: [0, 1, 2]                 # FIXED: one full run per seed
+
+paths:
+  data_dir: data
+  cache_dir: cache
+  checkpoint_dir: checkpoints
+  results_dir: results
+  images_cache: cache/ham64.npz
+  splits_csv: cache/splits.csv
+
+split:                           # FIXED
+  group_by: lesion_id
+  stratify_by: dx
+  train: 0.70
+  val: 0.15
+  test: 0.15
+  split_seed: 42                 # split is made once and reused by every run
+
+data:                            # FIXED
+  image_size: 64                 # stored/GAN resolution
+  clf_input_size: 224            # classifier input (64x64 images upsampled)
+  classes: [akiec, bcc, bkl, df, mel, nv, vasc]   # label id = list index
+  imagenet_mean: [0.485, 0.456, 0.406]
+  imagenet_std: [0.229, 0.224, 0.225]
+
+classifier:                      # FIXED
+  arch: resnet18
+  pretrained_weights: IMAGENET1K_V1
+  loss: cross_entropy
+  class_weights: false           # becomes true only in extension E1
+  optimizer: adam
+  lr: 1.0e-4
+  weight_decay: 0.0
+  batch_size: 64
+  max_epochs: 20
+  sampler: shuffle               # plain shuffling in every experiment
+  early_stopping:
+    metric: val_macro_f1
+    patience: 5
+  num_workers: 2
+
+augmentation:                    # VARIES
+  mode: none                     # none | classical
+
+topup:                           # VARIES (same values in E2, E3, E4)
+  enabled: false
+  classes: [akiec, vasc, df]
+  reference_class: bcc           # target = target_fraction x (training count of this class)
+  target_fraction: 1.0
+
+synthetic:                       # VARIES
+  enabled: false
+  source: null                   # dcgan | wgangp
+  gan_checkpoint: null
+  synthetic_path: null
+  quality_filter:
+    enabled: false
+    filter_model_experiment: E0  # classifier used to score synthetic images
+    confidence_threshold: 0.9    # drop wrong-class predictions above this confidence
+    generate_factor: 2.0         # generate this many x target, filter, then trim to target

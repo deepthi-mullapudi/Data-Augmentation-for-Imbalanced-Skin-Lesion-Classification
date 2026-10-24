@@ -1,0 +1,78 @@
+experiment:
+  id: E3
+  name: dcgan_augmentation
+  description: Real images plus conditional DCGAN images, added to the train split
+    only.
+seeds:
+- 0
+- 1
+- 2
+paths:
+  data_dir: E:\udemy\ADL\project\data
+  cache_dir: E:\udemy\ADL\project\cache
+  checkpoint_dir: E:\udemy\ADL\project\checkpoints
+  results_dir: E:\udemy\ADL\project\results
+  images_cache: E:\udemy\ADL\project\cache\ham64.npz
+  splits_csv: E:\udemy\ADL\project\cache\splits.csv
+split:
+  group_by: lesion_id
+  stratify_by: dx
+  train: 0.7
+  val: 0.15
+  test: 0.15
+  split_seed: 42
+data:
+  image_size: 64
+  clf_input_size: 224
+  classes:
+  - akiec
+  - bcc
+  - bkl
+  - df
+  - mel
+  - nv
+  - vasc
+  imagenet_mean:
+  - 0.485
+  - 0.456
+  - 0.406
+  imagenet_std:
+  - 0.229
+  - 0.224
+  - 0.225
+classifier:
+  arch: resnet18
+  pretrained_weights: IMAGENET1K_V1
+  loss: cross_entropy
+  class_weights: false
+  optimizer: adam
+  lr: 0.0001
+  weight_decay: 0.0
+  batch_size: 64
+  max_epochs: 20
+  sampler: shuffle
+  early_stopping:
+    metric: val_macro_f1
+    patience: 5
+  num_workers: 2
+augmentation:
+  mode: none
+topup:
+  enabled: true
+  classes:
+  - akiec
+  - vasc
+  - df
+  reference_class: bcc
+  target_fraction: 1.0
+synthetic:
+  enabled: true
+  source: dcgan
+  gan_checkpoint: checkpoints/GAN_DCGAN_AUG/seed_0/dcgan_epoch_200.pt
+  synthetic_path: cache/synthetic_dcgan.npz
+  quality_filter:
+    enabled: false
+    filter_model_experiment: E0
+    confidence_threshold: 0.9
+    generate_factor: 2.0
+seed: 0

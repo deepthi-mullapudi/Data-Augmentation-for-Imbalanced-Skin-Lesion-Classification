@@ -1,0 +1,49 @@
+# Training settings for the conditional WGAN-GP (used by src/train_gan.py).
+# Same generator and data as the DCGAN; only the loss and critic change.
+
+experiment:
+  id: GAN_WGANGP
+  name: conditional_wgangp
+  description: Conditional WGAN-GP, Wasserstein loss with gradient penalty, no BatchNorm in the critic.
+
+seeds: [0]
+
+paths:
+  data_dir: data
+  cache_dir: cache
+  checkpoint_dir: checkpoints
+  results_dir: results
+  images_cache: cache/ham64.npz
+  splits_csv: cache/splits.csv
+
+data:
+  image_size: 64
+  classes: [akiec, bcc, bkl, df, mel, nv, vasc]
+  pixel_range: [-1, 1]
+
+model:
+  type: wgangp
+  z_dim: 100
+  class_embed_dim: 50
+  base_channels: 512
+  d_norm: layernorm              # critic: layernorm (GroupNorm, 1 group) or instancenorm; never batchnorm
+  init_std: 0.02
+
+train:
+  epochs: 200                    # match DCGAN by real images seen or wall-clock, and state which in the report
+  batch_size: 64
+  lr_g: 1.0e-4
+  lr_d: 1.0e-4
+  betas: [0.0, 0.9]
+  n_critic: 5                    # critic updates per generator update
+  gp_lambda: 10.0
+  balanced_sampler: true
+  diffaugment:
+    enabled: false
+    policy: color,translation,cutout
+
+logging:
+  sample_every: 5
+  checkpoint_every: 5
+  samples_per_class: 8
+  best_checkpoint_name: wgangp_best.pt

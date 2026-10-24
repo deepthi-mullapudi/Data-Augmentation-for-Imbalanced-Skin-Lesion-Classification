@@ -1,0 +1,13 @@
+{
+  "experiment": "E4",
+  "seed": 1,
+  "timestamp": "2026-10-24 06:49:24",
+  "config_file": "E:\\udemy\\ADL\\project\\configs\\e4.yaml",
+  "git_commit": "unknown",
+  "python": "3.11.9",
+  "torch": "2.5.1+cu121",
+  "cuda": "12.1",
+  "device": "cuda",
+  "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+  "platform": "Windows-10-10.0.26300-SP0"
+}

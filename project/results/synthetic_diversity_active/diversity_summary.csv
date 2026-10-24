@@ -1,0 +1,5 @@
+checkpoint,gan,epoch,classes_evaluated,images_per_class_used,mean_of_class_means,std_of_class_means
+dcgan_aug_epoch_150,DCGAN-Aug,150,7,100,0.12968020173147168,0.020442190174610658
+dcgan_aug_epoch_200,DCGAN-Aug,200,7,100,0.1392257255329757,0.028460070673403667
+wgangp_epoch_150,WGAN-GP,150,7,100,0.1405889844038614,0.023221967326394706
+wgangp_epoch_200,WGAN-GP,200,7,100,0.13313052763735062,0.019599707120109854

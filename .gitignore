@@ -1,0 +1,93 @@
+﻿# Python generated files
+project/**/__pycache__/
+project/*.py[cod]
+project/**/*.py[cod]
+project/*.pyo
+
+# Virtual environments
+project/.venv/
+project/myenv/
+project/venv/
+project/env/
+
+# IDE and OS
+project/.vscode/
+project/.idea/
+project/**/.DS_Store
+project/**/Thumbs.db
+project/**/desktop.ini
+
+# HAM10000 dataset
+project/data/*
+!project/data/.gitkeep
+
+# Cache: retain reproducibility metadata only
+project/cache/*
+!project/cache/.gitkeep
+!project/cache/splits.csv
+!project/cache/label_mapping.json
+!project/cache/train_class_counts.csv
+
+# Model checkpoints
+project/checkpoints/*
+!project/checkpoints/.gitkeep
+project/**/*.pt
+project/**/*.pth
+project/**/*.ckpt
+project/**/*.onnx
+
+# Results: ignore by default
+project/results/*
+
+# Keep selected experiment results
+!project/results/metrics.csv
+!project/results/E0/
+!project/results/E2/
+!project/results/E3/
+!project/results/E4/
+!project/results/GAN_DCGAN_AUG/
+!project/results/GAN_WGANGP/
+!project/results/fid_evaluation_active/
+!project/results/memorization_check_active/
+!project/results/phase9_analysis/
+!project/results/synthetic_diversity_active/
+
+# Ignore unwanted results
+project/results/GAN_DCGAN_old/
+project/results/fid_evaluation/
+project/results/fid_evaluation_dcgan_aug/
+project/results/synthetic_diversity_evaluation_old/
+project/results/synthetic_evaluation_old/
+project/results/synthetic_evaluation_smoke_old/
+project/results/trials/
+project/results/smoke/
+project/results/smoke_archive/
+project/results/archive/
+
+# Ignore temporary experiment folders elsewhere
+project/**/smoke/
+project/**/smoke_*/
+project/**/trials/
+project/**/archive/
+project/**/smoke_archive/
+
+# Ignore temporary patches and backups
+project/phase7_patch.py
+project/phase7_fix_topup.py
+project/**/*.pre_phase7_backup
+project/**/*.bak
+project/**/*.backup
+project/**/*~
+
+# Environment snapshots
+project/requirements-venv-freeze.txt
+
+# Logs and experiment tracking
+project/**/*.log
+project/wandb/
+
+# Exclude all phase backups
+project/**/*.pre_phase7*
+project/configs/gan_dcgan_trial.yaml
+
+project/Document.md

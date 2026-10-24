@@ -1,0 +1,33 @@
+{
+  "experiment": "GAN_DCGAN_AUG",
+  "gan_type": "dcgan",
+  "seed": 0,
+  "epochs_completed": 200,
+  "training_images": 7009,
+  "training_class_counts": {
+    "akiec": 228,
+    "bcc": 359,
+    "bkl": 769,
+    "df": 80,
+    "mel": 779,
+    "nv": 4694,
+    "vasc": 100
+  },
+  "batch_size": 64,
+  "images_seen": 1395200,
+  "final_epoch": {
+    "epoch": 200,
+    "g_loss": 1.504756974791168,
+    "d_loss": 0.5156416294224765,
+    "d_real_mean": 0.5989762111267912,
+    "d_fake_mean": 0.2982718748373723,
+    "wasserstein_estimate": NaN,
+    "gradient_norm_mean": NaN,
+    "epoch_seconds": 10.785,
+    "images_seen": 1395200,
+    "gan_type": "dcgan"
+  },
+  "checkpoint_directory": "E:\\udemy\\ADL\\project\\checkpoints\\GAN_DCGAN_AUG\\seed_0",
+  "sample_directory": "E:\\udemy\\ADL\\project\\results\\GAN_DCGAN_AUG\\seed_0\\samples",
+  "checkpoint_selection": "Not automatic; review saved grids and use Phase 6 FID."
+}
